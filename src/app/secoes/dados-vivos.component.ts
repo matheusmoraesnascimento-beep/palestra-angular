@@ -48,7 +48,7 @@ export class DadosVivosComponent {
   adicionar(): void {
     this.contador++;
     this.mensagens = [
-      { remetente: 'Novo contato', assunto: 'Mensagem ' + this.contador, dataHora: 'I202000Z/MAR/2026', prioridade: 'urgente', lida: false },
+      { remetente: 'Novo contato', assunto: 'Mensagem ' + this.contador, dataHora: 'I202000Z/MAR/2026', prioridade: 'instantanea', lida: false },
       ...this.mensagens,
     ];
   }

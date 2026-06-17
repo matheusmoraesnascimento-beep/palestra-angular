@@ -1,4 +1,4 @@
-export type Prioridade = 'rotina' | 'urgente' | 'imediata';
+export type Prioridade = 'rotina' | 'preferencial' | 'imediata' | 'emergencia' | 'instantanea';
 
 export interface Mensagem {
   remetente: string;
@@ -11,15 +11,17 @@ export interface Mensagem {
 export function rotuloPrioridade(p: Prioridade): string {
   const mapa: Record<Prioridade, string> = {
     rotina: 'Rotina',
-    urgente: 'Urgente',
+    preferencial: 'Preferencial',
     imediata: 'Imediata',
+    emergencia: 'Emergência',
+    instantanea: 'Instantânea',
   };
   return mapa[p];
 }
 
 export const MENSAGENS: Mensagem[] = [
   { remetente: 'ComForSup', assunto: 'Ordem de operação ALFA', dataHora: 'I201941Z/MAR/2026', prioridade: 'imediata', lida: false },
-  { remetente: 'Capitania', assunto: 'Aviso aos navegantes', dataHora: 'I200840Z/MAR/2026', prioridade: 'urgente', lida: false },
-  { remetente: 'DAdM', assunto: 'Escala de serviço semanal', dataHora: 'I191705Z/MAR/2026', prioridade: 'rotina', lida: true },
-  { remetente: 'Almoxarifado', assunto: 'Confirmação de recebimento', dataHora: 'I191422Z/MAR/2026', prioridade: 'rotina', lida: true },
+  { remetente: 'Capitania', assunto: 'Aviso aos navegantes', dataHora: 'E200840Z/MAR/2026', prioridade: 'emergencia', lida: false },
+  { remetente: 'DAdM', assunto: 'Escala de serviço semanal', dataHora: 'P191705Z/MAR/2026', prioridade: 'preferencial', lida: true },
+  { remetente: 'Almoxarifado', assunto: 'Confirmação de recebimento', dataHora: 'R191422Z/MAR/2026', prioridade: 'rotina', lida: true },
 ];

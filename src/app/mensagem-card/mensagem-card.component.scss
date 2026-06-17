@@ -13,5 +13,7 @@
 .card-rodape { display: flex; justify-content: space-between; color: var(--navy-soft); font-size: .95rem; }
 .badge { color: var(--white); border-radius: 999px; padding: .15rem .7rem; font-size: .8rem; }
 .badge-rotina { background: #4a6fa5; }
-.badge-urgente { background: var(--gold); color: var(--navy); }
-.badge-imediata { background: #b00020; }
+.badge-preferencial { background: #2e8b57; }
+.badge-imediata { background: var(--gold); color: var(--navy); }
+.badge-emergencia { background: #d2691e; }
+.badge-instantanea { background: #b00020; }
