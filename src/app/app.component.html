@@ -1,9 +1,14 @@
-<mat-toolbar color="primary" class="topo">
-  <mat-icon>anchor</mat-icon>
-  <span class="titulo">Angular na prática</span>
-</mat-toolbar>
+<header class="topo">
+  <div class="brand-row">
+    <div class="brand">
+      <div class="logo">A</div>
+      <span class="titulo">Angular na prática</span>
+    </div>
+    <span class="pill"><span class="dot"></span> Guia interativo</span>
+  </div>
+</header>
 
-<mat-tab-group class="abas" animationDuration="200ms" [mat-stretch-tabs]="false">
+<mat-tab-group class="abas" animationDuration="250ms" [mat-stretch-tabs]="false">
   <mat-tab label="Início"><app-intro></app-intro></mat-tab>
   <mat-tab label="Componente"><app-componente-lego></app-componente-lego></mat-tab>
   <mat-tab label="Trio HTML/SCSS/TS"><app-trio></app-trio></mat-tab>

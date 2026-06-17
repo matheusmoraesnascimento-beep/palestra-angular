@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
 import { IntroComponent } from './secoes/intro.component';
 import { ComponenteLegoComponent } from './secoes/componente-lego.component';
 import { TrioComponent } from './secoes/trio.component';
@@ -12,7 +10,7 @@ import { DadosVivosComponent } from './secoes/dados-vivos.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    MatToolbarModule, MatTabsModule, MatIconModule,
+    MatTabsModule,
     IntroComponent, ComponenteLegoComponent,
     TrioComponent, ComparacaoComponent, DadosVivosComponent,
   ],

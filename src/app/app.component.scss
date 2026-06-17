@@ -1,13 +1,58 @@
 .topo {
-  background: var(--navy);
-  color: var(--white);
-  gap: .75rem;
+  background: rgba(255, 255, 255, .88);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
-.topo .titulo { font-size: 1.4rem; font-weight: 500; }
-.topo mat-icon { color: var(--gold); }
+.brand-row {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 20px;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, .38);
+}
+.titulo { font-weight: 700; font-size: 18px; letter-spacing: -.01em; color: var(--ink); }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--blue-border);
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, .18);
+}
 
 .abas {
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
 }
-.abas ::ng-deep .mat-mdc-tab .mdc-tab__text-label { font-size: 1.05rem; }
+.abas ::ng-deep .mat-mdc-tab .mdc-tab__text-label { font-size: 15px; font-weight: 600; color: var(--muted-2); }
+.abas ::ng-deep .mat-mdc-tab--active .mdc-tab__text-label { color: var(--blue); }
