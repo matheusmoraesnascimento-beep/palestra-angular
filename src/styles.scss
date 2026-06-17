@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --navy: #0b2545;
+  --navy-soft: #13315c;
+  --gold: #c9a227;
+  --white: #ffffff;
+  --gray: #e8edf3;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 18px;
+  color: var(--navy);
+  background: var(--gray);
+}
+
+.tela {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.tela h2 { font-size: 2rem; color: var(--navy); margin-top: 0; }
+.tela p  { font-size: 1.2rem; line-height: 1.6; }
+
+.callout {
+  background: var(--navy);
+  color: var(--white);
+  border-left: 6px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
