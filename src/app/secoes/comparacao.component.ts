@@ -10,18 +10,18 @@ import { CodePanelComponent } from '../code-panel/code-panel.component';
   template: `
     <section class="tela">
       <h2>Com Angular × Sem Angular</h2>
-      <p>Mesma tela com 4 mensagens. Veja a diferença de trabalho.</p>
+      <p>Você tem as mensagens na tela e chegou <strong>mais uma</strong>. Quanto código pra exibi-la?</p>
       <button mat-raised-button color="accent" class="botao" (click)="toggle()">
         Mostrando: {{ comAngular ? 'COM Angular' : 'SEM Angular' }} — clique para alternar
       </button>
       <app-code-panel
-        [titulo]="comAngular ? 'Com Angular — reusa a peça' : 'Sem Angular — repete tudo à mão'"
+        [titulo]="comAngular ? 'Com Angular — a tela é 1 linha; pra somar outra, só o dado' : 'Sem Angular — um bloco de marcação por mensagem'"
         [codigo]="comAngular ? codigoCom : codigoSem"
-        [linhas]="comAngular ? 1 : 28">
+        [linhas]="comAngular ? 11 : 28">
       </app-code-panel>
       <div class="callout">
-        🔎 Acrescentar a 5ª mensagem: sem Angular = copiar mais um bloco inteiro;
-        com Angular = só mais um item na lista de dados.
+        🔎 Sem Angular, o HTML cresce um bloco a cada mensagem. Com Angular, a tela
+        continua 1 linha — você só acrescenta o dado.
       </div>
     </section>
   `,
@@ -33,7 +33,17 @@ export class ComparacaoComponent {
   comAngular = false;
   toggle(): void { this.comAngular = !this.comAngular; }
 
-  readonly codigoCom = `<app-mensagem-card *ngFor="let m of mensagens" [mensagem]="m"></app-mensagem-card>`;
+  readonly codigoCom = `// A tela inteira é só isto, e nunca muda:
+<app-mensagem-card *ngFor="let m of mensagens" [mensagem]="m"></app-mensagem-card>
+
+// Chegou mais uma? Só acrescenta o dado:
+mensagens.push({
+  remetente: 'Fragata Independência',
+  assunto: 'Reabastecimento concluído',
+  dataHora: 'R211015Z/MAR/2026',
+  prioridade: 'rotina',
+  lida: false,
+});`;
 
   readonly codigoSem = `<article class="card">
   <span class="remetente">ComForSup</span>
