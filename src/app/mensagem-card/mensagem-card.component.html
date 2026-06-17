@@ -1,0 +1,11 @@
+<article class="card" [class.lida]="mensagem.lida">
+  <header class="card-topo">
+    <span class="remetente">{{ mensagem.remetente }}</span>
+    <span class="badge" [class]="'badge-' + mensagem.prioridade">{{ rotulo(mensagem.prioridade) }}</span>
+  </header>
+  <p class="assunto">{{ mensagem.assunto }}</p>
+  <footer class="card-rodape">
+    <span class="data">{{ mensagem.data }}</span>
+    <span class="status">{{ mensagem.lida ? 'Lida' : 'Não lida' }}</span>
+  </footer>
+</article>
