@@ -1,3 +1,23 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$palestra-primary: mat.define-palette(mat.$blue-grey-palette, 900, 700, 900);
+$palestra-accent: mat.define-palette(mat.$amber-palette, 600, 400, 800);
+$palestra-warn: mat.define-palette(mat.$red-palette);
+
+$palestra-theme: mat.define-light-theme((
+  color: (
+    primary: $palestra-primary,
+    accent: $palestra-accent,
+    warn: $palestra-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($palestra-theme);
+
 :root {
   --navy: #0b2545;
   --navy-soft: #13315c;
@@ -10,7 +30,7 @@
 
 html, body {
   margin: 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: Roboto, 'Segoe UI', system-ui, sans-serif;
   font-size: 18px;
   color: var(--navy);
   background: var(--gray);

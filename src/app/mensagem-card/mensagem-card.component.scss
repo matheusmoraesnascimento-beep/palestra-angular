@@ -1,19 +1,24 @@
 .card {
-  background: var(--white);
-  border-radius: 8px;
-  border: 1px solid var(--gray);
   border-left: 6px solid var(--navy);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 2px 6px rgba(11, 37, 69, .08);
 }
 .card.lida { opacity: .6; }
-.card-topo { display: flex; justify-content: space-between; align-items: center; }
-.remetente { font-weight: 700; color: var(--navy); }
-.assunto { font-size: 1.15rem; margin: .5rem 0; }
-.card-rodape { display: flex; justify-content: space-between; color: var(--navy-soft); font-size: .95rem; }
-.badge { color: var(--white); border-radius: 999px; padding: .15rem .7rem; font-size: .8rem; }
-.badge-rotina { background: #4a6fa5; }
-.badge-preferencial { background: #2e8b57; }
-.badge-imediata { background: var(--gold); color: var(--navy); }
-.badge-emergencia { background: #d2691e; }
-.badge-instantanea { background: #b00020; }
+.card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.remetente { font-weight: 700; color: var(--navy); font-size: 1.1rem; }
+.assunto { font-size: 1.15rem; margin: .25rem 0 .75rem; }
+.card-rodape {
+  display: flex;
+  justify-content: space-between;
+  color: var(--navy-soft);
+  font-size: .95rem;
+}
+.data-hora { font-family: 'Roboto Mono', monospace; letter-spacing: .5px; }
+
+.badge.badge-rotina       { --mdc-chip-elevated-container-color: #4a6fa5; --mdc-chip-label-text-color: #fff; }
+.badge.badge-preferencial { --mdc-chip-elevated-container-color: #2e8b57; --mdc-chip-label-text-color: #fff; }
+.badge.badge-imediata     { --mdc-chip-elevated-container-color: #c9a227; --mdc-chip-label-text-color: #0b2545; }
+.badge.badge-emergencia   { --mdc-chip-elevated-container-color: #d2691e; --mdc-chip-label-text-color: #fff; }
+.badge.badge-instantanea  { --mdc-chip-elevated-container-color: #b00020; --mdc-chip-label-text-color: #fff; }

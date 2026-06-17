@@ -1,11 +1,17 @@
-<article class="card" [class.lida]="mensagem.lida">
-  <header class="card-topo">
-    <span class="remetente">{{ mensagem.remetente }}</span>
-    <span class="badge" [class]="'badge-' + mensagem.prioridade">{{ rotulo(mensagem.prioridade) }}</span>
-  </header>
-  <p class="assunto">{{ mensagem.assunto }}</p>
-  <footer class="card-rodape">
-    <span class="data-hora">{{ mensagem.dataHora }}</span>
-    <span class="status">{{ mensagem.lida ? 'Lida' : 'Não lida' }}</span>
-  </footer>
-</article>
+<mat-card class="card" [class.lida]="mensagem.lida" appearance="outlined">
+  <mat-card-header class="card-topo">
+    <mat-card-title class="remetente">{{ mensagem.remetente }}</mat-card-title>
+    <mat-chip-set>
+      <mat-chip class="badge" [ngClass]="'badge-' + mensagem.prioridade" highlighted disableRipple>
+        {{ rotulo(mensagem.prioridade) }}
+      </mat-chip>
+    </mat-chip-set>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="assunto">{{ mensagem.assunto }}</p>
+    <div class="card-rodape">
+      <span class="data-hora">{{ mensagem.dataHora }}</span>
+      <span class="status">{{ mensagem.lida ? 'Lida' : 'Não lida' }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>

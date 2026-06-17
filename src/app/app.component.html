@@ -1,20 +1,12 @@
-<header class="topo">
-  <h1>Angular na prática</h1>
-  <nav class="abas">
-    <button
-      *ngFor="let aba of abas"
-      class="aba"
-      [class.ativa]="secao() === aba.id"
-      (click)="ir(aba.id)">
-      {{ aba.rotulo }}
-    </button>
-  </nav>
-</header>
+<mat-toolbar color="primary" class="topo">
+  <mat-icon>anchor</mat-icon>
+  <span class="titulo">Angular na prática</span>
+</mat-toolbar>
 
-<main [ngSwitch]="secao()">
-  <app-intro *ngSwitchCase="'intro'"></app-intro>
-  <app-componente-lego *ngSwitchCase="'componente'"></app-componente-lego>
-  <app-trio *ngSwitchCase="'trio'"></app-trio>
-  <app-comparacao *ngSwitchCase="'comparacao'"></app-comparacao>
-  <app-dados-vivos *ngSwitchCase="'dados'"></app-dados-vivos>
-</main>
+<mat-tab-group class="abas" animationDuration="200ms" [mat-stretch-tabs]="false">
+  <mat-tab label="Início"><app-intro></app-intro></mat-tab>
+  <mat-tab label="Componente"><app-componente-lego></app-componente-lego></mat-tab>
+  <mat-tab label="Trio HTML/SCSS/TS"><app-trio></app-trio></mat-tab>
+  <mat-tab label="Com vs Sem"><app-comparacao></app-comparacao></mat-tab>
+  <mat-tab label="Dados Vivos"><app-dados-vivos></app-dados-vivos></mat-tab>
+</mat-tab-group>

@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { CodePanelComponent } from '../code-panel/code-panel.component';
 
 @Component({
   selector: 'app-comparacao',
   standalone: true,
-  imports: [CommonModule, CodePanelComponent],
+  imports: [CommonModule, MatButtonModule, CodePanelComponent],
   template: `
     <section class="tela">
       <h2>Com Angular × Sem Angular</h2>
       <p>Mesma tela com 4 mensagens. Veja a diferença de trabalho.</p>
-      <button class="botao" (click)="toggle()">
+      <button mat-raised-button color="accent" class="botao" (click)="toggle()">
         Mostrando: {{ comAngular ? 'COM Angular' : 'SEM Angular' }} — clique para alternar
       </button>
       <app-code-panel
@@ -25,8 +26,7 @@ import { CodePanelComponent } from '../code-panel/code-panel.component';
     </section>
   `,
   styles: [`
-    .botao { background: var(--gold); color: var(--navy); border: 0; border-radius: 6px;
-             padding: .8rem 1.2rem; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-bottom: 1rem; }
+    .botao { font-size: 1.05rem; margin-bottom: 1rem; }
   `],
 })
 export class ComparacaoComponent {

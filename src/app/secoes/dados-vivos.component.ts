@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MensagemCardComponent } from '../mensagem-card/mensagem-card.component';
 import { Mensagem, MENSAGENS } from '../mensagem';
 
 @Component({
   selector: 'app-dados-vivos',
   standalone: true,
-  imports: [CommonModule, MensagemCardComponent],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MensagemCardComponent],
   template: `
     <section class="tela">
       <h2>Dados vivos: a tela reage sozinha</h2>
@@ -16,8 +18,12 @@ import { Mensagem, MENSAGENS } from '../mensagem';
       </p>
       <div class="barra">
         <span class="contador">Não lidas: <strong>{{ naoLidas }}</strong></span>
-        <button class="botao" (click)="marcarTodasLidas()">Marcar todas como lidas</button>
-        <button class="botao" (click)="adicionar()">Chegou mensagem nova</button>
+        <button mat-raised-button color="primary" (click)="marcarTodasLidas()">
+          <mat-icon>done_all</mat-icon> Marcar todas como lidas
+        </button>
+        <button mat-raised-button color="accent" (click)="adicionar()">
+          <mat-icon>add</mat-icon> Chegou mensagem nova
+        </button>
       </div>
       <div class="lista">
         <app-mensagem-card *ngFor="let m of mensagens" [mensagem]="m"></app-mensagem-card>
@@ -28,8 +34,6 @@ import { Mensagem, MENSAGENS } from '../mensagem';
   styles: [`
     .barra { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
     .contador { font-size: 1.2rem; }
-    .botao { background: var(--gold); color: var(--navy); border: 0; border-radius: 6px;
-             padding: .7rem 1.1rem; font-weight: 700; cursor: pointer; }
     .lista { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   `],
 })
