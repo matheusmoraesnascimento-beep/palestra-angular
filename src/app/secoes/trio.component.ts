@@ -54,8 +54,8 @@ export class TrioComponent {
   readonly ts = `mensagem = {
   remetente: 'ComForSup',
   assunto: 'Ordem de operação ALFA',
-  dataHora: 'R201941Z/MAR/2026',
-  prioridade: 'urgentissimo',
+  dataHora: 'I201941Z/MAR/2026',
+  prioridade: 'imediata',
   lida: false,
 };`;
 }
