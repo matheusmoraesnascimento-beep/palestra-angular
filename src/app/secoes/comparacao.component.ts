@@ -38,21 +38,21 @@ export class ComparacaoComponent {
   readonly codigoSem = `<article class="card">
   <span class="remetente">ComForSup</span>
   <p class="assunto">Ordem de operação ALFA</p>
-  <span class="data">17/06 09:12</span>
+  <span class="data-hora">R201941Z/MAR/2026</span>
 </article>
 <article class="card">
   <span class="remetente">Capitania</span>
   <p class="assunto">Aviso aos navegantes</p>
-  <span class="data">17/06 08:40</span>
+  <span class="data-hora">R200840Z/MAR/2026</span>
 </article>
 <article class="card">
   <span class="remetente">DAdM</span>
   <p class="assunto">Escala de serviço semanal</p>
-  <span class="data">16/06 17:05</span>
+  <span class="data-hora">R191705Z/MAR/2026</span>
 </article>
 <article class="card">
   <span class="remetente">Almoxarifado</span>
   <p class="assunto">Confirmação de recebimento</p>
-  <span class="data">16/06 14:22</span>
+  <span class="data-hora">R191422Z/MAR/2026</span>
 </article>`;
 }

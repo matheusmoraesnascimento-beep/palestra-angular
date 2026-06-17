@@ -42,7 +42,7 @@ export class TrioComponent {
   readonly html = `<article class="card">
   <span class="remetente">{{ mensagem.remetente }}</span>
   <p class="assunto">{{ mensagem.assunto }}</p>
-  <span class="data">{{ mensagem.data }}</span>
+  <span class="data-hora">{{ mensagem.dataHora }}</span>
 </article>`;
   readonly scss = `.card {
   background: white;
@@ -51,6 +51,11 @@ export class TrioComponent {
   padding: 1rem;
 }
 .remetente { font-weight: 700; }`;
-  readonly ts = `@Input({ required: true })
-mensagem!: Mensagem;`;
+  readonly ts = `mensagem = {
+  remetente: 'ComForSup',
+  assunto: 'Ordem de operação ALFA',
+  dataHora: 'R201941Z/MAR/2026',
+  prioridade: 'urgentissimo',
+  lida: false,
+};`;
 }
