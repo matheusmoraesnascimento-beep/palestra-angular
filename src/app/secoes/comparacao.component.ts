@@ -15,13 +15,13 @@ import { CodePanelComponent } from '../code-panel/code-panel.component';
         Mostrando: {{ comAngular ? 'COM Angular' : 'SEM Angular' }} — clique para alternar
       </button>
       <app-code-panel
-        [titulo]="comAngular ? 'Com Angular — a tela é 1 linha; pra somar outra, só o dado' : 'Sem Angular — um bloco de marcação por mensagem'"
+        [titulo]="comAngular ? 'Com Angular — reaproveita 1 card pra todas as mensagens' : 'Sem Angular — um bloco de marcação por mensagem'"
         [codigo]="comAngular ? codigoCom : codigoSem"
-        [linhas]="comAngular ? 11 : 28">
+        [linhas]="comAngular ? 5 : 28">
       </app-code-panel>
       <div class="callout">
         🔎 Sem Angular, o HTML cresce um bloco a cada mensagem. Com Angular, a tela
-        continua 1 linha — você só acrescenta o dado.
+        continua 1 linha — o mesmo card se repete pra cada item da lista.
       </div>
     </section>
   `,
@@ -33,17 +33,11 @@ export class ComparacaoComponent {
   comAngular = false;
   toggle(): void { this.comAngular = !this.comAngular; }
 
-  readonly codigoCom = `// A tela inteira é só isto, e nunca muda:
-<app-mensagem-card *ngFor="let m of mensagens" [mensagem]="m"></app-mensagem-card>
-
-// Chegou mais uma? Só acrescenta o dado:
-mensagens.push({
-  remetente: 'Fragata Independência',
-  assunto: 'Reabastecimento concluído',
-  dataHora: 'R211015Z/MAR/2026',
-  prioridade: 'rotina',
-  lida: false,
-});`;
+  readonly codigoCom = `<!-- A tela inteira é só isto: -->
+<app-mensagem-card
+  *ngFor="let m of mensagens"
+  [mensagem]="m">
+</app-mensagem-card>`;
 
   readonly codigoSem = `<article class="card">
   <span class="remetente">ComForSup</span>
