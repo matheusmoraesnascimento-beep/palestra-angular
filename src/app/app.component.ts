@@ -5,6 +5,7 @@ import { ComponenteLegoComponent } from './secoes/componente-lego.component';
 import { TrioComponent } from './secoes/trio.component';
 import { ComparacaoComponent } from './secoes/comparacao.component';
 import { DadosVivosComponent } from './secoes/dados-vivos.component';
+import { EncerramentoComponent } from './secoes/encerramento.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { DadosVivosComponent } from './secoes/dados-vivos.component';
     MatTabsModule,
     IntroComponent, ComponenteLegoComponent,
     TrioComponent, ComparacaoComponent, DadosVivosComponent,
+    EncerramentoComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
