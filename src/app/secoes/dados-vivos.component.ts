@@ -37,7 +37,7 @@ const PAGINAS: Record<Rota, Pagina> = {
           <div class="janela">
             <div class="barra-nav">
               <span class="pontos"><i></i><i></i><i></i></span>
-              <span class="url">meusite.com/{{ rotaTrad }}</span>
+              <span class="url">sigdem.mb/{{ rotaTrad }}</span>
             </div>
             <nav class="links">
               <button *ngFor="let r of rotas"
@@ -63,7 +63,7 @@ const PAGINAS: Record<Rota, Pagina> = {
           <div class="janela">
             <div class="barra-nav">
               <span class="pontos"><i></i><i></i><i></i></span>
-              <span class="url">meusite.com/{{ rotaSpa }}</span>
+              <span class="url">sigad.mb/{{ rotaSpa }}</span>
             </div>
             <nav class="links">
               <button *ngFor="let r of rotas"
