@@ -15,13 +15,14 @@ import { CodePanelComponent } from '../code-panel/code-panel.component';
         Mostrando: {{ comAngular ? 'COM Angular' : 'SEM Angular' }} — clique para alternar
       </button>
       <app-code-panel
-        [titulo]="comAngular ? 'Com Angular — reaproveita 1 card pra todas as mensagens' : 'Sem Angular — um bloco de marcação por mensagem'"
+        [titulo]="comAngular ? 'Com Angular — desenha o card 1 vez, depois só chama' : 'Sem Angular — um bloco de marcação por mensagem'"
         [codigo]="comAngular ? codigoCom : codigoSem"
-        [linhas]="comAngular ? 5 : 28">
+        [linhas]="comAngular ? 10 : 28">
       </app-code-panel>
       <div class="callout">
-        🔎 Sem Angular, o HTML cresce um bloco a cada mensagem. Com Angular, a tela
-        continua 1 linha — o mesmo card se repete pra cada item da lista.
+        🔎 Sem Angular, você copia e cola o bloco do card pra cada mensagem. Com Angular,
+        o card é desenhado <strong>uma vez</strong> e a página só o chama — a mesma peça
+        se repete sozinha pra cada mensagem da lista.
       </div>
     </section>
   `,
@@ -33,11 +34,15 @@ export class ComparacaoComponent {
   comAngular = false;
   toggle(): void { this.comAngular = !this.comAngular; }
 
-  readonly codigoCom = `<!-- A tela inteira é só isto: -->
-<app-mensagem-card
-  *ngFor="let m of mensagens"
-  [mensagem]="m">
-</app-mensagem-card>`;
+  readonly codigoCom = `<!-- 1) Você desenha o card UMA vez (mensagem-card.component.html): -->
+<article class="card">
+  <span class="remetente">{{ mensagem.remetente }}</span>
+  <p class="assunto">{{ mensagem.assunto }}</p>
+  <span class="data-hora">{{ mensagem.dataHora }}</span>
+</article>
+
+<!-- 2) Na página principal, só CHAMO o card — sem reescrever o HTML: -->
+<app-mensagem-card *ngFor="let m of mensagens" [mensagem]="m"></app-mensagem-card>`;
 
   readonly codigoSem = `<article class="card">
   <span class="remetente">ComForSup</span>
