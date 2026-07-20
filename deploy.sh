@@ -11,8 +11,9 @@ BROWSER="dist/palestra-angular/browser"
 WT="/tmp/ghp-palestra"
 
 echo ">> build"
+# Usa o binario local: `npx ng build` trava (resolucao de pacote) e estoura timeout.
 # --base-href some via proxy RTK; corrigimos por sed abaixo em vez de confiar no flag.
-npx ng build
+./node_modules/.bin/ng build
 
 echo ">> corrige <base href>"
 sed -i "s#<base href=\"/\">#<base href=\"$BASE\">#" "$BROWSER/index.html"
