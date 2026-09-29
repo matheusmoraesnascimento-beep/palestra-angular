@@ -80,12 +80,6 @@ const PAGINAS: Record<Rota, Pagina> = {
           </div>
         </div>
       </div>
-
-      <div class="callout">
-        🚀 O Angular baixa <strong>1 HTML</strong> uma vez. O <strong>Router</strong>
-        troca as telas no próprio navegador, em JavaScript, sem voltar ao servidor a
-        cada clique. Por isso a navegação é instantânea — parece um app.
-      </div>
     </section>
   `,
   styles: [`
