@@ -53,3 +53,11 @@ tr.lida td { opacity: .65; }
 .mapa { cursor: pointer; }
 .ativa { outline: 3px solid var(--blue); outline-offset: -3px; background-color: rgba(37, 99, 235, .07); }
 thead.ativa, .rodape.ativa { background-color: rgba(37, 99, 235, .12); }
+
+.compacto {
+  table { min-width: 0; font-size: .82rem; }
+  th, td { padding: 8px 6px; }
+  th { font-size: .7rem; letter-spacing: 0; }
+  .controles { display: none; }
+  .celula-data { font-size: .72rem; letter-spacing: 0; }
+}

@@ -1,4 +1,4 @@
-<div class="moldura" [class.mapa]="modo === 'mapa'" [class.ativa]="pecaAtiva === 'layout'" (click)="escolher('layout', $event)">
+<div class="moldura" [class.mapa]="modo === 'mapa'" [class.compacto]="modo === 'estatico'" [class.ativa]="pecaAtiva === 'layout'" (click)="escolher('layout', $event)">
   <div class="rolagem">
     <table [class.ativa]="pecaAtiva === 'tabela'" (click)="escolher('tabela', $event)">
       <thead [class.ativa]="pecaAtiva === 'cabecalho'" (click)="escolher('cabecalho', $event)">
