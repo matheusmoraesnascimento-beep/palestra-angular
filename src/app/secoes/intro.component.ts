@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { GridMockComponent } from '../grid-mock/grid-mock.component';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
+  imports: [GridMockComponent],
   template: `
     <section class="hero">
       <div class="hero-texto">
@@ -21,44 +23,16 @@ import { Component } from '@angular/core';
         <div class="callout">
           <span class="callout-icon">🔎</span>
           <span>
-            <strong>Este próprio site é feito assim.</strong> Cada parte que você
-            vê é uma peça Angular — inclusive as abas lá em cima.
+            <strong>Este próprio site é feito assim.</strong> As abas lá em cima e a tabela ao lado
+            são peças Angular.
           </span>
         </div>
       </div>
 
       <div class="hero-arte">
-        <div class="arte-card">
-          <div class="arte-rotulo">Peças padronizadas</div>
-          <div class="pecas">
-            <span class="peca azul"><i></i> Cabeçalho</span>
-            <span class="peca teal"><i></i> Botão</span>
-            <span class="peca ambar"><i></i> Card</span>
-            <span class="peca roxo"><i></i> Tabela</span>
-          </div>
-          <div class="monta">
-            <span class="linha"></span>
-            <span class="monta-pill">monta ↓</span>
-            <span class="linha"></span>
-          </div>
-          <div class="tela-montada">
-            <div class="janela">
-              <span class="bolinha r"></span><span class="bolinha y"></span><span class="bolinha g"></span>
-            </div>
-            <div class="conteudo">
-              <div class="bloco azul-cheio"></div>
-              <div class="linha-botoes">
-                <div class="btn-teal"></div>
-                <div class="btn-out"></div>
-              </div>
-              <div class="bloco card-ambar"></div>
-              <div class="texto-fake">
-                <span></span><span style="width:78%"></span><span style="width:88%"></span>
-              </div>
-            </div>
-          </div>
-          <p class="arte-legenda">Como um navio: peças que se repetem e se encaixam.</p>
-        </div>
+        <span class="arte-rotulo">Uma tela que você usa todo dia</span>
+        <app-grid-mock modo="estatico"></app-grid-mock>
+        <p class="arte-legenda">A lista de mensagens recebidas: montada com peças que se repetem e se encaixam.</p>
       </div>
     </section>
 
@@ -125,35 +99,7 @@ import { Component } from '@angular/core';
     .callout strong { font-weight: 700; color: #102a52; }
 
     .hero-arte { flex: 1 1 400px; min-width: 320px; }
-    .arte-card {
-      background: #fff; border: 1px solid #e6ecf5; border-radius: 22px; padding: 26px;
-      box-shadow: 0 18px 44px rgba(15, 39, 71, .08);
-    }
-    .arte-rotulo { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #94a3b8; }
-    .pecas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .peca { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; padding: 9px 13px; border-radius: 12px; }
-    .peca i { width: 11px; height: 11px; border-radius: 4px; display: inline-block; }
-    .peca.azul  { background: #eaf2ff; border: 1px solid #d4e3ff; color: #1e40af; } .peca.azul i  { background: #3b82f6; }
-    .peca.teal  { background: #e7faf5; border: 1px solid #c8f0e6; color: #0f766e; } .peca.teal i  { background: #14b8a6; }
-    .peca.ambar { background: #fef6e7; border: 1px solid #fbe7bf; color: #b45309; } .peca.ambar i { background: #f59e0b; }
-    .peca.roxo  { background: #f1edff; border: 1px solid #e0d6ff; color: #6d28d9; } .peca.roxo i  { background: #8b5cf6; }
-
-    .monta { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 16px 0; }
-    .monta .linha { width: 2px; height: 14px; background: #dbe3ee; }
-    .monta-pill { font-size: 12px; font-weight: 700; color: #2563eb; background: #eef4ff; border: 1px solid #dbe7ff; padding: 4px 12px; border-radius: 999px; }
-
-    .tela-montada { border: 1px solid #e6ecf5; border-radius: 14px; overflow: hidden; background: #fbfcff; box-shadow: 0 6px 18px rgba(15, 39, 71, .05); }
-    .janela { height: 34px; background: #fff; border-bottom: 1px solid #eef2f8; display: flex; align-items: center; gap: 6px; padding: 0 13px; }
-    .bolinha { width: 9px; height: 9px; border-radius: 50%; }
-    .bolinha.r { background: #ff6058; } .bolinha.y { background: #ffbd2e; } .bolinha.g { background: #28c840; }
-    .conteudo { padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 10px; }
-    .bloco.azul-cheio { height: 22px; border-radius: 7px; background: #3b82f6; opacity: .92; }
-    .linha-botoes { display: flex; gap: 8px; }
-    .btn-teal { height: 26px; flex: none; width: 84px; border-radius: 8px; background: #14b8a6; opacity: .9; }
-    .btn-out { height: 26px; flex: none; width: 64px; border-radius: 8px; background: #e7faf5; border: 1px solid #c8f0e6; }
-    .card-ambar { height: 46px; border-radius: 9px; background: #fef6e7; border: 1px solid #fbe7bf; }
-    .texto-fake { display: flex; flex-direction: column; gap: 6px; }
-    .texto-fake span { height: 10px; border-radius: 4px; background: #ede9fe; display: block; }
+    .arte-rotulo { display: block; margin-bottom: 12px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #94a3b8; }
     .arte-legenda { margin: 16px 0 0; font-size: 13px; font-style: italic; color: #94a3b8; text-align: center; }
 
     .passos { max-width: 1120px; margin: 0 auto; padding: 30px 28px 64px; }

@@ -14,7 +14,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
         Cada componente junta três responsabilidades:
         <strong>HTML</strong> (a estrutura), <strong>SCSS</strong> (o visual) e
         <strong>TypeScript</strong> (o cérebro/os dados). Edite os quadros e veja
-        o cartão à direita mudar na hora.
+        a linha da tabela à direita mudar na hora.
       </p>
 
       <div class="grade">
@@ -40,7 +40,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
       </div>
 
       <div class="callout">
-        🔎 Os três quadros são os arquivos reais do cartão. Mude um texto no HTML,
+        🔎 Os três quadros são os arquivos de uma linha da tabela de mensagens. Mude um texto no HTML,
         uma cor no SCSS ou um dado no TypeScript — o resultado reage na hora.
       </div>
     </section>
@@ -78,20 +78,23 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   `],
 })
 export class TrioComponent {
-  html = `<article class="card">
+  html = `<div class="linha">
   <span class="remetente">{{ mensagem.remetente }}</span>
-  <p class="assunto">{{ mensagem.assunto }}</p>
+  <span class="assunto">{{ mensagem.assunto }}</span>
   <span class="data-hora">{{ mensagem.dataHora }}</span>
-</article>`;
+</div>`;
 
-  scss = `.card {
-  background: #fff;
+  scss = `.linha {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
   border-left: 6px solid #2563eb;
-  border-radius: 12px;
-  padding: 16px;
+  background: #fff;
+  padding: 12px 16px;
 }
 .remetente { font-weight: 700; color: #0f2747; }
-.assunto { font-size: 18px; margin: 6px 0; }
+.assunto { flex: 1; }
 .data-hora { color: #64748b; font-family: monospace; }`;
 
   ts = `mensagem = {

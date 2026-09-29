@@ -5,7 +5,6 @@ import { DesmontandoComponent } from './secoes/desmontando.component';
 import { DadosMudamComponent } from './secoes/dados-mudam.component';
 import { ComponenteLegoComponent } from './secoes/componente-lego.component';
 import { TrioComponent } from './secoes/trio.component';
-import { ComparacaoComponent } from './secoes/comparacao.component';
 import { DadosVivosComponent } from './secoes/dados-vivos.component';
 import { EncerramentoComponent } from './secoes/encerramento.component';
 
@@ -15,7 +14,7 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
   imports: [
     MatTabsModule,
     IntroComponent, DesmontandoComponent, DadosMudamComponent, ComponenteLegoComponent,
-    TrioComponent, ComparacaoComponent, DadosVivosComponent,
+    TrioComponent, DadosVivosComponent,
     EncerramentoComponent,
   ],
   templateUrl: './app.component.html',

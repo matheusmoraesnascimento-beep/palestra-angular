@@ -1,6 +1,7 @@
 .card {
   border: 1px solid var(--border);
   border-radius: 16px;
+  border-left: 6px solid var(--card-borda, var(--border));
   box-shadow: var(--card-shadow);
 }
 .card.lida { opacity: .6; }
