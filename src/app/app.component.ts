@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IntroComponent } from './secoes/intro.component';
+import { DesmontandoComponent } from './secoes/desmontando.component';
+import { DadosMudamComponent } from './secoes/dados-mudam.component';
 import { ComponenteLegoComponent } from './secoes/componente-lego.component';
 import { TrioComponent } from './secoes/trio.component';
 import { ComparacaoComponent } from './secoes/comparacao.component';
@@ -12,7 +14,7 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
   standalone: true,
   imports: [
     MatTabsModule,
-    IntroComponent, ComponenteLegoComponent,
+    IntroComponent, DesmontandoComponent, DadosMudamComponent, ComponenteLegoComponent,
     TrioComponent, ComparacaoComponent, DadosVivosComponent,
     EncerramentoComponent,
   ],
