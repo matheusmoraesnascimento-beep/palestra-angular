@@ -35,9 +35,9 @@
   <div class="rodape" [class.ativa]="pecaAtiva === 'paginador'" (click)="escolher('paginador', $event)">
     <span>{{ resultado.total }} {{ resultado.total === 1 ? 'mensagem' : 'mensagens' }}</span>
     <span class="paginas">
-      <button type="button" class="ico" [disabled]="resultado.pagina <= 1" (click)="mudarPagina(-1)" aria-label="Página anterior">‹</button>
+      <button type="button" class="ico" [disabled]="modo === 'interativo' && resultado.pagina <= 1" (click)="mudarPagina(-1)" aria-label="Página anterior">‹</button>
       <span>Página {{ resultado.pagina }} de {{ resultado.paginas }}</span>
-      <button type="button" class="ico" [disabled]="resultado.pagina >= resultado.paginas" (click)="mudarPagina(1)" aria-label="Próxima página">›</button>
+      <button type="button" class="ico" [disabled]="modo === 'interativo' && resultado.pagina >= resultado.paginas" (click)="mudarPagina(1)" aria-label="Próxima página">›</button>
     </span>
   </div>
 </div>

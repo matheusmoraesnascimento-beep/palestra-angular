@@ -50,7 +50,7 @@ tr.lida td { opacity: .65; }
 .paginas { display: inline-flex; align-items: center; gap: 8px; }
 
 .mapa .rodape, .mapa thead, .mapa table, .mapa .celula-data { cursor: pointer; }
-.mapa { cursor: pointer; }
+.mapa { cursor: pointer; padding: 10px; }
 .ativa { outline: 3px solid var(--blue); outline-offset: -3px; background-color: rgba(37, 99, 235, .07); }
 thead.ativa, .rodape.ativa { background-color: rgba(37, 99, 235, .12); }
 
