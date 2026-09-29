@@ -1,0 +1,43 @@
+<div class="moldura" [class.mapa]="modo === 'mapa'" [class.ativa]="pecaAtiva === 'layout'" (click)="escolher('layout', $event)">
+  <div class="rolagem">
+    <table [class.ativa]="pecaAtiva === 'tabela'" (click)="escolher('tabela', $event)">
+      <thead [class.ativa]="pecaAtiva === 'cabecalho'" (click)="escolher('cabecalho', $event)">
+        <tr>
+          <th *ngFor="let c of colunas">
+            <div class="th-conteudo">
+              <span>{{ c.titulo }}</span>
+              <span class="controles">
+                <button type="button" class="ico" [class.on]="estado.sortField === c.campo" (click)="alternarOrdem(c.campo)" [attr.aria-label]="'Ordenar por ' + c.titulo">{{ iconeOrdem(c.campo) }}</button>
+                <button type="button" class="ico" [class.on]="temFiltro(c.campo)" (click)="alternarFiltro(c.campo)" [attr.aria-label]="'Filtrar ' + c.titulo">🔍</button>
+              </span>
+            </div>
+            <div class="filtro" *ngIf="filtroAberto === c.campo" (click)="$event.stopPropagation()">
+              <input #f type="text" placeholder="Digite para filtrar" [value]="estado.filtros[c.campo] ?? ''" (input)="mudarFiltro(c.campo, f.value)" />
+              <button type="button" class="limpar" (click)="limparFiltro(c.campo)">Limpar</button>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of resultado.linhas" [class.lida]="m.lida">
+          <td class="remetente">{{ m.remetente }}</td>
+          <td>{{ m.assunto }}</td>
+          <td><span class="badge" [ngClass]="'badge-' + m.prioridade">{{ rotulo(m.prioridade) }}</span></td>
+          <td class="celula-data" [class.ativa]="pecaAtiva === 'celula'" (click)="escolher('celula', $event)">{{ m.dataHora }}</td>
+        </tr>
+        <tr *ngIf="!resultado.linhas.length">
+          <td colspan="4" class="vazio">Nenhuma mensagem encontrada</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rodape" [class.ativa]="pecaAtiva === 'paginador'" (click)="escolher('paginador', $event)">
+    <span>{{ resultado.total }} {{ resultado.total === 1 ? 'mensagem' : 'mensagens' }}</span>
+    <span class="paginas">
+      <button type="button" class="ico" [disabled]="resultado.pagina <= 1" (click)="mudarPagina(-1)" aria-label="Página anterior">‹</button>
+      <span>Página {{ resultado.pagina }} de {{ resultado.paginas }}</span>
+      <button type="button" class="ico" [disabled]="resultado.pagina >= resultado.paginas" (click)="mudarPagina(1)" aria-label="Próxima página">›</button>
+    </span>
+  </div>
+</div>
