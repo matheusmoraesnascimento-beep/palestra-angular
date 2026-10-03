@@ -36,7 +36,7 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
         @case ('semcom') { <app-sem-com></app-sem-com> }
         @case ('dados') { <app-dados-vivos></app-dados-vivos> }
         @case ('spa') { <app-spa></app-spa> }
-        @case ('fim') { <app-encerramento (ir)="ir($event)"></app-encerramento> }
+        @case ('fim') { <app-encerramento></app-encerramento> }
       }
     </main>
   `,

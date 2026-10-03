@@ -45,6 +45,11 @@ const PROPS_OK = ['background', 'background-color', 'color', 'border-radius', 'f
           <div class="mono tt" [style.color]="ativo().cor">{{ ativo().arquivo }}</div>
           <p class="explica">{{ ativo().explica }}</p>
 
+          @if (nivel() === 3) {
+            <pre class="code dado">// dado guardado na peça
+mensagem = '••••••••••••••••••';</pre>
+          }
+
           <div class="tarefa">
             <span class="mono rot">Escreva isto:</span>
             <pre class="code ex">{{ ativo().exemplo }}</pre>
@@ -69,30 +74,34 @@ const PROPS_OK = ['background', 'background-color', 'color', 'border-radius', 'f
           <div class="status" [class.bom]="ok(nivel())">
             @if (ok(nivel())) { ✓ {{ msgOk() }} } @else { {{ msgFalta() }} }
           </div>
-          <p class="tente muted">{{ ativo().sugestao }}</p>
+          @if (ativo().sugestao) { <p class="tente muted">{{ ativo().sugestao }}</p> }
         </div>
 
         <!-- PREVIEW -->
         <div class="card box">
           <div class="mono tt">Resultado na tela</div>
-          <div class="palco" [class.escuro]="nivel() >= 2">
+          <div class="palco">
             @if (nivel() === 1 && !htmlOk()) {
               <span class="vazio">Nada aqui ainda. Escreva o HTML.</span>
             } @else {
               <div class="coluna">
-                <button class="alvo" [ngStyle]="estilo()" [class.cru]="nivel() === 1" (click)="clicar()">{{ texto() }}</button>
-                @if (nivel() === 3) {
-                  <div class="trilho"><div class="nave" [style.left.px]="x()" [style.background]="corNave()"></div></div>
-                }
+                <button class="alvo" [ngStyle]="estilo()" [class.cru]="!vestido()" (click)="clicar()">{{ texto() }}</button>
               </div>
             }
           </div>
           <p class="legenda">{{ legenda() }}</p>
-          @if (nivel() === 3) {
-            <button class="btn ghost peq" (click)="reiniciar()">Voltar a peça ao início</button>
-          }
         </div>
       </div>
+
+      @if (aviso()) {
+        <div class="fundo" (click)="aviso.set('')" role="presentation">
+          <div class="modal" role="alertdialog" aria-modal="true" (click)="$event.stopPropagation()">
+            <div class="selo">✓</div>
+            <p class="msg">{{ aviso() }}</p>
+            <button class="btn" (click)="aviso.set('')">OK</button>
+          </div>
+        </div>
+      }
 
       @if (ok(1) && ok(2) && ok(3)) {
         <div class="parabens">
@@ -125,6 +134,7 @@ const PROPS_OK = ['background', 'background-color', 'color', 'border-radius', 'f
     .tarefa { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
     .rot { font-size: 12px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .1em; }
     .ex { width: 100%; background: var(--surface-2); border-radius: 10px; border: 1px dashed var(--line-2); padding: 12px 16px; color: var(--amber); }
+    .dado { background: var(--surface-2); border-radius: 10px; padding: 12px 16px; color: #7dd3fc; }
     .peq { min-height: 40px; font-size: 13px; padding: 0 14px; }
     .ed { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line-2); background: #050a14;
       color: #c7d3f0; font-family: var(--mono); font-size: 15px; line-height: 1.6; resize: vertical; }
@@ -134,15 +144,20 @@ const PROPS_OK = ['background', 'background-color', 'color', 'border-radius', 'f
     .tente { margin: 0; font-size: 14px; }
     .palco { display: flex; align-items: center; justify-content: center; min-height: 260px; padding: 24px; border-radius: 14px;
       background: #fff; transition: background .4s; }
-    .palco.escuro { background: var(--surface-2); }
     .coluna { display: flex; flex-direction: column; gap: 28px; width: 100%; align-items: center; }
     .vazio { color: #888; font-size: 15px; }
     .alvo { cursor: pointer; transition: all .3s; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 16px;
       min-height: 44px; padding: 0 22px; border: 0; border-radius: 12px; background: var(--blue); color: #fff; font-weight: 600; }
     .alvo.cru { font: 13px Arial, sans-serif; min-height: 0; padding: 2px 8px; border: 1px solid #767676; border-radius: 3px;
       background: #efefef; color: #000; font-weight: 400; }
-    .trilho { position: relative; width: 100%; max-width: 360px; height: 40px; border-radius: 10px; background: var(--surface-3); }
-    .nave { position: absolute; top: 4px; width: 32px; height: 32px; border-radius: 9px; transition: left .6s cubic-bezier(.3,1.3,.5,1), background .3s; }
+    .fundo { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+      padding: 24px; background: rgba(3, 6, 14, .72); backdrop-filter: blur(6px); animation: pop .2s ease; }
+    .modal { width: min(640px, 100%); padding: 44px 40px; border-radius: 28px; text-align: center; background: var(--surface);
+      border: 1px solid var(--blue); box-shadow: 0 0 0 6px rgba(59,130,246,.15), 0 40px 100px rgba(0,0,0,.7);
+      display: flex; flex-direction: column; align-items: center; gap: 24px; animation: pop .3s cubic-bezier(.3,1.4,.5,1); }
+    .selo { width: 72px; height: 72px; border-radius: 50%; background: var(--green); color: #052016; display: flex;
+      align-items: center; justify-content: center; font-size: 40px; font-weight: 700; }
+    .msg { margin: 0; font-size: clamp(26px, 4vw, 38px); font-weight: 700; line-height: 1.25; letter-spacing: -.02em; overflow-wrap: anywhere; }
     .legenda { margin: 0; font-size: 15px; color: var(--muted-2); }
     .parabens { margin-top: 20px; padding: 20px 24px; border-radius: 16px; border: 1px solid #1f5a46; background: #0e2a22;
       color: #a7f3d0; font-size: 18px; line-height: 1.5; animation: pop .3s ease; }
@@ -155,7 +170,7 @@ export class AnatomiaComponent {
       arquivo: 'aviso.component.html', nome: 'HTML', cor: '#fb923c', papel: 'o esqueleto: o que existe na tela',
       explica: 'O HTML diz quais elementos existem. Sozinho, é cru e feio, e não faz nada. Crie um botão:',
       tarefa: 'botao', exemplo: '<button>Confirmar presença</button>',
-      sugestao: 'Depois tente trocar o texto entre as marcas, por exemplo: <button>Enviar relatório</button>',
+      sugestao: '',
     },
     {
       arquivo: 'aviso.component.scss', nome: 'SCSS', cor: '#f472b6', papel: 'a roupa: como parece',
@@ -165,9 +180,9 @@ export class AnatomiaComponent {
     },
     {
       arquivo: 'aviso.component.ts', nome: 'TS', cor: '#60a5fa', papel: 'o cérebro: o que faz',
-      explica: 'O TypeScript guarda os dados e as ações. Diga o que acontece quando clicam no botão: mova a nave.',
-      tarefa: 'acao', exemplo: 'this.x = 220;',
-      sugestao: 'Tente this.x = 50; ou this.x += 60; ou this.cor = \'tomato\'; (uma por linha) e clique no botão.',
+      explica: 'O TypeScript guarda os dados e as ações. A peça já guarda uma mensagem secreta. Diga o que acontece quando clicam no botão: mostrar essa mensagem na tela.',
+      tarefa: 'acao', exemplo: 'alert(this.mensagem);',
+      sugestao: 'O alert() faz um aviso aparecer. this.mensagem é o dado guardado na peça.',
     },
   ];
 
@@ -177,8 +192,7 @@ export class AnatomiaComponent {
   html = signal('');
   scss = signal('');
   ts = signal('');
-  x = signal(0);
-  corNave = signal('#22d3ee');
+  aviso = signal('');
 
   ativo = computed(() => this.passos[this.nivel() - 1]);
 
@@ -202,25 +216,14 @@ export class AnatomiaComponent {
     return out;
   });
   scssOk = computed(() => Object.keys(this.estiloObj()).length > 0);
+  vestido = computed(() => this.nivel() >= 2 && this.scssOk());
   estilo = computed(() => (this.nivel() >= 2 ? this.estiloObj() : {}));
 
-  // ---- TS: this.x = N; this.x += N; this.x -= N; this.cor = '...'; ----
-  private acoes = computed(() => {
-    const out: (() => void)[] = [];
-    for (const l of this.ts().split(/[;\n]/)) {
-      const s = l.trim();
-      let m = /^this\.x\s*(=|\+=|-=)\s*(-?\d+)$/.exec(s);
-      if (m) {
-        const n = parseInt(m[2], 10);
-        out.push(() => this.x.update(v => this.limita(m![1] === '=' ? n : m![1] === '+=' ? v + n : v - n)));
-        continue;
-      }
-      m = /^this\.cor\s*=\s*['"]([^'"]+)['"]$/.exec(s);
-      if (m && CSS.supports('color', m[1])) { const c = m[1]; out.push(() => this.corNave.set(c)); }
-    }
-    return out;
-  });
-  tsOk = computed(() => this.acoes().length > 0);
+  // ---- TS: alert(this.mensagem); (ou alert('frase própria');) ----
+  private readonly segredo = 'Programei meu primeiro botão usando Angular!';
+  private alertaMatch = computed(() =>
+    /^\s*(?:window\.)?alert\(\s*(?:this\.mensagem|(['"`])([\s\S]+?)\1)\s*\)\s*;?\s*$/.exec(this.ts()));
+  tsOk = computed(() => this.alertaMatch() !== null);
 
   ok(n: number) { return n === 1 ? this.htmlOk() : n === 2 ? this.scssOk() : this.tsOk(); }
 
@@ -228,21 +231,21 @@ export class AnatomiaComponent {
     switch (this.nivel()) {
       case 1: return 'O elemento apareceu. Isso é o HTML: a estrutura.';
       case 2: return 'O botão mudou. Isso é o SCSS: só aparência.';
-      default: return 'Pronto! Agora clique no botão e veja a nave se mover.';
+      default: return 'Pronto! Agora clique no botão da direita.';
     }
   });
   msgFalta = computed(() => {
     switch (this.nivel()) {
       case 1: return this.html().trim() ? 'Ainda não reconheci. Use exatamente <button>texto</button>.' : 'Esperando você digitar...';
       case 2: return this.scss().trim() ? 'Ainda não reconheci. Escreva button { background: orange; }' : 'Esperando você digitar...';
-      default: return this.ts().trim() ? 'Ainda não reconheci. Escreva this.x = 220;' : 'Esperando você digitar...';
+      default: return this.ts().trim() ? 'Ainda não reconheci. Escreva alert(this.mensagem);' : 'Esperando você digitar...';
     }
   });
   legenda = computed(() => {
     switch (this.nivel()) {
       case 1: return 'Só HTML: o botão existe, mas está cru. Clicar não faz nada.';
       case 2: return 'HTML + SCSS: mesmo botão, outra aparência. Clicar ainda não faz nada.';
-      default: return 'HTML + SCSS + TS: clique no botão e o TS que você escreveu roda.';
+      default: return 'HTML + SCSS + TS: clique no botão e o código que você escreveu roda.';
     }
   });
 
@@ -255,9 +258,7 @@ export class AnatomiaComponent {
 
   clicar() {
     if (this.nivel() !== 3) return;
-    for (const a of this.acoes()) a();
+    const m = this.alertaMatch();
+    if (m) this.aviso.set(m[2] ? m[2].trim() : this.segredo);
   }
-
-  reiniciar() { this.x.set(0); this.corNave.set('#22d3ee'); }
-  private limita(v: number) { return Math.max(0, Math.min(v, 320)); }
 }

@@ -14,7 +14,7 @@ type Pagina = 'caixa' | 'urgentes' | 'sobre';
       <h1 class="h1">Uma página <span style="color:var(--violet)">só</span></h1>
       <p class="lead">
         No site tradicional, cada clique <strong>baixa a página inteira de novo</strong>: topo, menu, tudo.
-        No Angular o topo e o menu ficam, e <strong>só o miolo troca</strong>. Clique nas abas nos dois modos.
+        No Angular o topo e o menu ficam, e <strong>só o miolo troca</strong>. Vamos clicar nas abas nos dois modos e comparar.
       </p>
       <div class="modos">
         <button class="chip" [class.on]="modo() === 'sem'" (click)="trocarModo('sem')">Site tradicional</button>

@@ -9,8 +9,8 @@ import { Component, computed, signal } from '@angular/core';
       <span class="eb">Momento 3</span>
       <h1 class="h1">Mesma tarefa.<br><span style="color:var(--amber)">Dois caminhos.</span></h1>
       <p class="lead">
-        Seu chefe pediu: <strong>"troque a cor do botão do sistema"</strong>. O sistema tem várias telas.
-        Escolha quantas e tente nos dois mundos.
+        Imagine que o chefe pediu: <strong>"troque a cor do botão do sistema"</strong>. O sistema tem várias telas.
+        Vamos fazer essa troca nos dois mundos, com quantas telas quisermos.
       </p>
 
       <div class="ctrl">
@@ -29,7 +29,7 @@ import { Component, computed, signal } from '@angular/core';
           <header>
             <span class="tag" style="background:#3a1a1a;color:#fca5a5">Sem Angular</span>
             <h2>Copiar e colar em cada tela</h2>
-            <p class="muted">Cada arquivo tem seu próprio botão. Edite um por um.</p>
+            <p class="muted">Cada arquivo tem seu próprio botão, então a troca é feita um por um.</p>
           </header>
 
           <ul class="arquivos">

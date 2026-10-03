@@ -15,7 +15,7 @@ interface Item { id: number; nome: string; cor: string; }
       <span class="eb">Momento 2</span>
       <h1 class="h1">Componente = <span style="color:var(--cyan)">peça de Lego</span></h1>
       <p class="lead">
-        Você cria a peça <strong>uma vez</strong> e encaixa onde quiser. Monte a sua abaixo:
+        A peça é criada <strong>uma vez</strong> e encaixada onde for preciso. Abaixo, uma peça é montada ao vivo:
         as três telas usam a <strong>mesma peça</strong> e mudam juntas.
       </p>
     </section>
@@ -48,7 +48,7 @@ interface Item { id: number; nome: string; cor: string; }
                   <button class="x" (click)="remover(i.id)" [attr.aria-label]="'Remover ' + i.nome">×</button>
                 </app-peca>
               } @empty {
-                <p class="vazio">Nenhuma peça ainda. Crie uma acima.</p>
+                <p class="vazio">Nenhuma peça ainda.</p>
               }
             </div>
           </div>
@@ -57,7 +57,7 @@ interface Item { id: number; nome: string; cor: string; }
 
       <div class="dica">
         <span>💡</span>
-        <span>Você usou o <strong>mesmo código</strong> da peça {{ total() }} × 3 vezes. Se mudar o desenho da peça, as três telas acompanham.</span>
+        <span>A peça foi escrita <strong>uma só vez</strong> e aparece {{ total() * 3 }} vezes nas telas. Mudando o desenho da peça, as três telas acompanham.</span>
       </div>
     </section>
 

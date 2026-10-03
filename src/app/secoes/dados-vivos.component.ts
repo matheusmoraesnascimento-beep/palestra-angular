@@ -11,7 +11,7 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
       <h1 class="h1">Dados <span style="color:var(--amber)">vivos</span></h1>
       <p class="lead">
         Em Angular, a tela é uma <strong>fotografia dos dados</strong>. Mudou o dado, a tela se redesenha sozinha.
-        Mexa nos controles.
+        Vamos ver isso em três experimentos.
       </p>
     </section>
 
@@ -19,7 +19,7 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
       <div class="grid duas">
         <!-- Experimento 1: nome ao vivo -->
         <div class="card box">
-          <div class="mono tt">Experimento 1 · Escreva seu nome</div>
+          <div class="mono tt">Experimento 1 · Digitando um nome</div>
           <input class="input" [value]="nome()" (input)="nome.set($any($event.target).value)" placeholder="Digite aqui..." maxlength="24" aria-label="Seu nome">
           <div class="espelho">
             <span class="avatar">{{ inicial() }}</span>
@@ -29,7 +29,7 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
             </div>
           </div>
           <pre class="code">nome = '{{ nome() }}'</pre>
-          <p class="muted peq">Três lugares mudam. Você escreveu zero linhas para atualizar cada um.</p>
+          <p class="muted peq">Três lugares mudam. Nenhuma linha de código foi escrita para atualizar cada um.</p>
         </div>
 
         <!-- Experimento 2: contador -->
@@ -53,7 +53,7 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
       <!-- Experimento 3: filtro -->
       <div class="card box grande">
         <div class="mono tt">Experimento 3 · Filtrar mensagens enquanto digita</div>
-        <input class="input" [value]="busca()" (input)="busca.set($any($event.target).value)" placeholder="Tente: capitania, escala, alfa..." aria-label="Buscar mensagens">
+        <input class="input" [value]="busca()" (input)="busca.set($any($event.target).value)" placeholder="Ex.: capitania, escala, alfa..." aria-label="Buscar mensagens">
         <div class="prio">
           @for (p of prioridades; track p) {
             <button class="chip" [class.on]="filtro() === p" (click)="filtro.set(filtro() === p ? '' : p)">{{ rotulo(p) }}</button>
@@ -68,14 +68,14 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
               <span class="r muted">{{ m.remetente }}</span>
             </li>
           } @empty {
-            <li class="vazio">Nada encontrado. Apague uma letra.</li>
+            <li class="vazio">Nada encontrado para essa busca.</li>
           }
         </ul>
       </div>
 
       <div class="dica">
         <span>💡</span>
-        <span><strong>Sem Angular</strong> você escreve: "achou o elemento, apagou a lista, recriou cada linha, atualizou o contador". <strong>Com Angular</strong> você só diz como a tela é, a partir dos dados.</span>
+        <span><strong>Sem Angular</strong> é preciso escrever: "achou o elemento, apagou a lista, recriou cada linha, atualizou o contador". <strong>Com Angular</strong> basta dizer como a tela é, a partir dos dados.</span>
       </div>
     </section>
     <div style="height:96px"></div>
