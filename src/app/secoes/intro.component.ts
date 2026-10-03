@@ -1,120 +1,102 @@
-import { Component } from '@angular/core';
-import { GridMockComponent } from '../grid-mock/grid-mock.component';
+import { Component, output, signal } from '@angular/core';
+import { MENSAGENS, rotuloPrioridade } from '../mensagem';
 
 @Component({
   selector: 'app-intro',
   standalone: true,
-  imports: [GridMockComponent],
   template: `
-    <section class="hero">
-      <div class="hero-texto">
-        <span class="eyebrow">Conceito · 01</span>
-        <h1>O que é Angular?</h1>
-        <p>
-          Angular é uma ferramenta para construir telas de sistema montando
-          <strong>peças prontas e padronizadas</strong> — em vez de escrever
-          cada tela do zero, repetindo tudo à mão.
+    <div class="glow" style="top:-200px;right:-120px;width:760px;height:760px;background:var(--blue)"></div>
+
+    <section class="sec hero">
+      <div class="texto">
+        <span class="eb pill"><span class="dot"></span> Guia interativo</span>
+        <h1 class="h1">O que é<br><span class="azul">Angular?</span></h1>
+        <p class="lead">
+          Uma ferramenta para construir telas de sistema montando
+          <strong>peças prontas e padronizadas</strong>, em vez de escrever cada tela do zero.
         </p>
-        <p>
-          Pense num navio: ele não é esculpido de um único bloco de aço. É
-          <strong>montado</strong> com peças padronizadas que se repetem e se
-          encaixam. Angular faz o mesmo com as telas do sistema.
+        <p class="lead" style="margin-top:14px">
+          Como um navio: não nasce de um bloco único de aço. É <strong>montado</strong>, peça por peça.
         </p>
-        <div class="callout">
-          <span class="callout-icon">🔎</span>
-          <span>
-            <strong>Este próprio site é feito assim.</strong> As abas lá em cima e a tabela ao lado
-            são peças Angular.
-          </span>
-        </div>
       </div>
 
-      <div class="hero-arte">
-        <span class="arte-rotulo">Uma tela que você usa todo dia</span>
-        <app-grid-mock modo="estatico"></app-grid-mock>
-        <p class="arte-legenda">A lista de mensagens recebidas: montada com peças que se repetem e se encaixam.</p>
+      <div class="card janela" aria-label="Exemplo: lista de mensagens">
+        <div class="barra">
+          <span class="b" style="background:#f87171"></span><span class="b" style="background:#fbbf24"></span><span class="b" style="background:#34d399"></span>
+          <span class="mono tit">&lt;app-mensagens&gt;</span>
+        </div>
+        <div class="corpo">
+          <div class="cab"><strong>Mensagens recebidas</strong><span class="tag">{{ lista.length }} itens</span></div>
+          @for (m of lista; track m.assunto; let i = $index) {
+            <button class="linha" [class.on]="sel() === i" (click)="sel.set(i)">
+              <span class="ini" [style.background]="cores[m.prioridade]">{{ m.remetente.charAt(0) }}</span>
+              <span class="t"><span class="a">{{ m.assunto }}</span><span class="r">{{ m.remetente }} · {{ rotulo(m.prioridade) }}</span></span>
+              @if (!m.lida) { <span class="novo">novo</span> }
+            </button>
+          }
+        </div>
       </div>
     </section>
 
-    <section class="passos">
-      <div class="passos-titulo">
-        <h2>Como o Angular monta uma tela</h2>
-        <div class="risco"></div>
-      </div>
-      <div class="passos-grid">
-        <div class="passo">
-          <div class="num azul">1</div>
-          <h3>Cria a peça uma vez</h3>
-          <p>Você descreve um botão, um card ou uma tabela uma única vez.</p>
-        </div>
-        <div class="passo">
-          <div class="num teal">2</div>
-          <h3>Encaixa onde quiser</h3>
-          <p>A mesma peça é reutilizada em várias telas, sem copiar e colar.</p>
-        </div>
-        <div class="passo">
-          <div class="num ambar">3</div>
-          <h3>Muda num lugar só</h3>
-          <p>Ajustou a peça? Toda tela que a usa muda junto, na hora.</p>
-        </div>
+    <section class="sec sec-last">
+      <span class="eb">Roteiro</span>
+      <h2 class="h2">Seis passos para entender</h2>
+      <div class="grid" style="margin-top:36px">
+        @for (p of passos; track p.id; let i = $index) {
+          <button class="card passo" (click)="ir.emit(p.id)">
+            <span class="num mono" [style.color]="p.cor">0{{ i + 1 }}</span>
+            <strong>{{ p.titulo }}</strong>
+            <span class="muted">{{ p.texto }}</span>
+          </button>
+        }
       </div>
     </section>
   `,
   styles: [`
-    :host { display: block; }
-
-    .hero {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 54px 28px 20px;
-      display: flex;
-      gap: 56px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-    .hero-texto { flex: 1 1 460px; min-width: 320px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #e8f0ff; color: #2563eb;
-      font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
-      padding: 6px 12px; border-radius: 999px;
-    }
-    .hero-texto h1 {
-      font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -.025em;
-      margin: 18px 0 0; color: #0b1f3a;
-    }
-    .hero-texto p { font-size: 18px; line-height: 1.7; color: #475569; margin: 22px 0 0; max-width: 560px; }
-    .hero-texto p strong { color: #0f2747; font-weight: 700; }
-    .callout {
-      display: flex; align-items: flex-start; gap: 14px; margin-top: 28px;
-      background: #eef4ff; border: 1px solid #d7e3fb; border-radius: 16px;
-      padding: 18px 20px; max-width: 560px; color: #214066;
-      font-size: 15px; line-height: 1.6;
-    }
-    .callout-icon {
-      flex: none; width: 38px; height: 38px; border-radius: 11px;
-      background: #2563eb; display: flex; align-items: center; justify-content: center;
-      font-size: 18px; box-shadow: 0 6px 14px rgba(37, 99, 235, .32);
-    }
-    .callout strong { font-weight: 700; color: #102a52; }
-
-    .hero-arte { flex: 1 1 400px; min-width: 320px; }
-    .arte-rotulo { display: block; margin-bottom: 12px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #94a3b8; }
-    .arte-legenda { margin: 16px 0 0; font-size: 13px; font-style: italic; color: #94a3b8; text-align: center; }
-
-    .passos { max-width: 1120px; margin: 0 auto; padding: 30px 28px 64px; }
-    .passos-titulo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-    .passos-titulo h2 { font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #64748b; margin: 0; }
-    .risco { flex: 1; height: 1px; background: #e6ecf5; }
-    .passos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 760px) { .passos-grid { grid-template-columns: 1fr; } }
-    .passo { background: #fff; border: 1px solid #e6ecf5; border-radius: 18px; padding: 24px; box-shadow: 0 10px 28px rgba(15, 39, 71, .05); }
-    .num { width: 36px; height: 36px; border-radius: 11px; color: #fff; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-    .num.azul  { background: #3b82f6; box-shadow: 0 6px 14px rgba(59, 130, 246, .35); }
-    .num.teal  { background: #14b8a6; box-shadow: 0 6px 14px rgba(20, 184, 166, .35); }
-    .num.ambar { background: #f59e0b; box-shadow: 0 6px 14px rgba(245, 158, 11, .35); }
-    .passo h3 { font-size: 17px; font-weight: 700; margin: 16px 0 6px; color: #0f2747; }
-    .passo p { font-size: 14.5px; line-height: 1.6; color: #64748b; margin: 0; }
+    :host { display: block; position: relative; overflow: hidden; }
+    .hero { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; padding-top: 80px; }
+    .texto { flex: 1 1 460px; min-width: 0; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border: 1px solid var(--line);
+      border-radius: 999px; background: var(--surface); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .azul { color: var(--blue); }
+    .janela { flex: 1 1 460px; min-width: 0; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+    .barra { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+    .b { width: 11px; height: 11px; border-radius: 50%; }
+    .tit { margin-left: 12px; font-size: 12px; color: var(--muted-2); }
+    .corpo { padding: 20px 20px 10px; max-height: 560px; overflow-y: auto; }
+    .cab { display: flex; justify-content: space-between; align-items: center; font-size: 18px; }
+    .linha { display: flex; width: 100%; text-align: left; align-items: center; gap: 14px; min-height: 58px; padding: 0 12px;
+      margin-bottom: 8px; border-radius: 12px; border: 1px solid var(--line); background: transparent; color: var(--ink); }
+    .linha:hover { background: var(--surface-2); }
+    .linha.on { background: var(--surface-3); border-color: var(--blue); }
+    .ini { width: 34px; height: 34px; border-radius: 10px; flex: none; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: 14px; color: #07101f; }
+    .t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .a { font-weight: 600; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .r { font-size: 12px; color: var(--muted-2); }
+    .novo { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-radius: 6px; background: #12315e; color: #7dd3fc; }
+    .passo { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 28px; text-align: left;
+      color: var(--ink); font-size: 22px; transition: border-color .2s, transform .2s; }
+    .passo:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .passo .muted { font-size: 16px; line-height: 1.55; }
+    .num { font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
   `],
 })
-export class IntroComponent {}
+export class IntroComponent {
+  ir = output<string>();
+  sel = signal(0);
+  lista = MENSAGENS.slice(0, 6);
+  rotulo = rotuloPrioridade;
+  cores: Record<string, string> = {
+    rotina: '#60a5fa', preferencial: '#22d3ee', imediata: '#fbbf24', emergencia: '#f87171', instantanea: '#a78bfa',
+  };
+  passos = [
+    { id: 'anatomia', cor: '#3b82f6', titulo: 'Anatomia de uma peça', texto: 'HTML, SCSS e TS: o que cada arquivo faz. Monte uma peça camada por camada.' },
+    { id: 'componente', cor: '#22d3ee', titulo: 'Componente = Lego', texto: 'Crie peças e veja todas as telas que usam a peça mudarem juntas.' },
+    { id: 'semcom', cor: '#fb923c', titulo: 'Sem × Com Angular', texto: 'Troque o botão em várias telas: arquivo por arquivo, ou um clique só.' },
+    { id: 'dados', cor: '#fbbf24', titulo: 'Dados vivos', texto: 'Digite e filtre. A tela inteira reage na hora, sem você mandar atualizar.' },
+    { id: 'spa', cor: '#a78bfa', titulo: 'Uma página só', texto: 'Navegue sem a tela piscar e sem recarregar. Compare com o site tradicional.' },
+    { id: 'fim', cor: '#34d399', titulo: 'Fechamento', texto: 'O que você viu, em três frases.' },
+  ];
+}
