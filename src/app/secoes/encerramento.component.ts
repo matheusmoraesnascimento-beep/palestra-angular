@@ -60,7 +60,7 @@ export class EncerramentoComponent {
   readonly frases = [
     { n: '01', cor: '#22d3ee', titulo: 'Peças prontas', texto: 'A tela é montada com peças padronizadas, criadas uma vez e usadas onde precisar.' },
     { n: '02', cor: '#fb923c', titulo: 'Muda uma, mudam todas', texto: 'Trocar uma peça atualiza todas as telas de uma só vez, sem esquecer nenhuma.' },
-    { n: '03', cor: '#a78bfa', titulo: 'Sem piscar', texto: 'O sistema troca só o que mudou, sem recarregar a página: parece um aplicativo.' },
+    { n: '03', cor: '#a78bfa', titulo: 'Sem atualização brusca', texto: 'O sistema troca só o que mudou, sem recarregar a página: parece um aplicativo.' },
   ];
 
   readonly ganhos = [
