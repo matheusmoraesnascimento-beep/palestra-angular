@@ -18,7 +18,7 @@ type Pagina = 'caixa' | 'urgentes' | 'contador' | 'sobre';
       </p>
       <div class="modos">
         <button class="chip" [class.on]="modo() === 'sem'" (click)="trocarModo('sem')">Site tradicional</button>
-        <button class="chip" [class.on]="modo() === 'com'" (click)="trocarModo('com')">Angular (SPA)</button>
+        <button class="chip" [class.on]="modo() === 'com'" (click)="trocarModo('com')">Angular (uma página só)</button>
       </div>
     </section>
 

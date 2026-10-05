@@ -62,17 +62,15 @@ import { Component, computed, signal } from '@angular/core';
           </header>
 
           <div class="peca-arq">
-            <span class="mono">botao.component.scss</span>
-            <pre class="code">.botao &#123;
-  background: {{ comFeito() ? nova : velha }};
-&#125;</pre>
+            <span class="mono">Peça Botão (1 arquivo)</span>
+            <pre class="code">cor do botão: {{ comFeito() ? nova : velha }}</pre>
           </div>
           <ul class="arquivos">
             @for (f of arquivosCom(); track f.nome) {
               <li class="feito">
                 <span class="mono">{{ f.nome }}</span>
                 <span class="mini" [style.background]="comFeito() ? nova : velha">botão</span>
-                <span class="st mono">usa &lt;app-botao&gt;</span>
+                <span class="st mono">usa a peça Botão</span>
               </li>
             }
           </ul>

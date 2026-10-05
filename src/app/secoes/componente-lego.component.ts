@@ -63,7 +63,7 @@ interface Item { id: number; nome: string; cor: string; }
 
     <section class="sec sec-last">
       <div class="card codigo">
-        <div class="arq mono">como se usa a peça</div>
+        <div class="arq mono">Para pedir a peça, o sistema precisa de uma linha só (nome e cor):</div>
         <pre class="code">&lt;app-peca nome="{{ nome() || '...' }}" cor="{{ cor() }}" /&gt;</pre>
       </div>
     </section>

@@ -6,8 +6,8 @@
   --line: #1c2745;
   --line-2: #26345e;
   --ink: #e8eefc;
-  --muted: #9fb0d3;
-  --muted-2: #8fa0c4;
+  --muted: #b4c2e2;
+  --muted-2: #a9b8da;
   --blue: #3b82f6;
   --cyan: #22d3ee;
   --amber: #fbbf24;
@@ -24,7 +24,7 @@ html, body {
   background: var(--bg);
   color: var(--ink);
   font-family: 'Space Grotesk', system-ui, sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -37,14 +37,14 @@ input { font-family: inherit; }
 
 .eb {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: #7dd3fc;
 }
 .h1 { margin: 16px 0 0; font-size: clamp(44px, 7vw, 84px); line-height: 1; letter-spacing: -.04em; font-weight: 700; }
 .h2 { margin: 14px 0 0; font-size: clamp(32px, 4vw, 48px); letter-spacing: -.03em; font-weight: 700; }
-.lead { margin: 24px 0 0; font-size: 21px; line-height: 1.6; color: var(--muted); max-width: 680px; }
+.lead { margin: 24px 0 0; font-size: 24px; line-height: 1.6; color: var(--muted); max-width: 780px; }
 .lead strong, .muted strong { color: var(--ink); }
 .muted { color: var(--muted); }
 
@@ -65,7 +65,7 @@ input { font-family: inherit; }
 
 .chip {
   min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--line-2);
-  background: transparent; color: var(--muted); font-size: 14px; font-weight: 500;
+  background: transparent; color: var(--muted); font-size: 16px; font-weight: 500;
 }
 .chip.on { background: var(--surface-3); color: #fff; border-color: var(--blue); }
 
@@ -76,17 +76,17 @@ input { font-family: inherit; }
 .input:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
 
 .code {
-  margin: 0; padding: 20px; font-family: var(--mono); font-size: 14px; line-height: 1.7;
+  margin: 0; padding: 20px; font-family: var(--mono); font-size: 16px; line-height: 1.7;
   color: #c7d3f0; white-space: pre-wrap; word-break: break-word;
 }
 .tag {
-  font-family: var(--mono); font-size: 12px; padding: 5px 10px; border-radius: 8px;
+  font-family: var(--mono); font-size: 14px; padding: 5px 10px; border-radius: 8px;
   background: var(--surface-3); color: #7dd3fc; display: inline-block;
 }
 .dica {
   display: flex; align-items: flex-start; gap: 14px; margin-top: 28px; padding: 20px 24px;
   border: 1px solid #1e4e5c; border-radius: 16px; background: #0a1d26; color: #a5f3fc;
-  font-size: 18px; line-height: 1.5;
+  font-size: 21px; line-height: 1.5;
 }
 
 .glow { position: absolute; border-radius: 50%; filter: blur(140px); opacity: .14; pointer-events: none; }

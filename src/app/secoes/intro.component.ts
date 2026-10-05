@@ -40,7 +40,7 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
 
     <section class="sec sec-last">
       <span class="eb">Roteiro</span>
-      <h2 class="h2">Seis passos para entender</h2>
+      <h2 class="h2">Cinco passos para entender</h2>
       <div class="grid" style="margin-top:36px">
         @for (p of passos; track p.id; let i = $index) {
           <button class="card passo" (click)="ir.emit(p.id)">
@@ -93,9 +93,9 @@ export class IntroComponent {
   };
   passos = [
     { id: 'componente', cor: '#22d3ee', titulo: 'Componente = Lego', texto: 'Criamos peças e vemos todas as telas que usam a peça mudarem juntas.' },
-    { id: 'anatomia', cor: '#3b82f6', titulo: 'Anatomia de uma peça', texto: 'HTML, SCSS e TS: o que cada arquivo faz. Uma peça é montada ao vivo, camada por camada.' },
-    { id: 'semcom', cor: '#fb923c', titulo: 'Sem × Com Angular', texto: 'A mesma troca de botão em várias telas: arquivo por arquivo, ou editando uma peça só.' },
+    { id: 'anatomia', cor: '#3b82f6', titulo: 'Anatomia de uma peça', texto: 'Os três arquivos de uma peça: estrutura, aparência e comportamento. Montamos uma ao vivo.' },
+    { id: 'semcom', cor: '#fb923c', titulo: 'Antes × Depois', texto: 'A mesma troca de botão em várias telas: arquivo por arquivo, ou editando uma peça só.' },
     { id: 'spa', cor: '#a78bfa', titulo: 'Uma página só', texto: 'Navegar sem piscar nem recarregar, e um contador que não recarrega a página: site tradicional × SPA.' },
-    { id: 'fim', cor: '#34d399', titulo: 'Fechamento', texto: 'O que vimos, em três frases.' },
+    { id: 'fim', cor: '#34d399', titulo: 'Resumo', texto: 'O que vimos em três frases e por que isso importa para nós.' },
   ];
 }

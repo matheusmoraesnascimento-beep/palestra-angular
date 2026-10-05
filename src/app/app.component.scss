@@ -13,16 +13,17 @@
   font-weight: 700; font-size: 20px; color: #fff;
   box-shadow: 0 6px 20px rgba(59, 130, 246, .45);
 }
-.titulo { font-weight: 600; font-size: 18px; letter-spacing: -.01em; }
+.titulo { font-weight: 600; font-size: 20px; letter-spacing: -.01em; }
 .nav {
   display: flex; gap: 4px; flex-wrap: wrap; padding: 5px;
   border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
 }
 .tab {
   min-height: 44px; padding: 0 14px; border: 0; border-radius: 9px;
-  background: transparent; color: var(--muted-2); font-size: 14px; font-weight: 500;
+  background: transparent; color: var(--muted-2); font-size: 16px; font-weight: 500;
 }
 .tab:hover { color: #fff; }
 .tab.on { background: var(--surface-3); color: #fff; font-weight: 600; }
 .autor { font-family: var(--mono); font-size: 13px; color: var(--muted-2); }
 .autor strong { color: var(--ink); }
+.dica-tec { margin-right: 14px; padding: 4px 10px; border: 1px solid var(--line-2); border-radius: 8px; }
