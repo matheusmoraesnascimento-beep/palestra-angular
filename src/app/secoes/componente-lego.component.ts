@@ -20,7 +20,7 @@ interface Item { id: number; nome: string; cor: string; }
       </p>
     </section>
 
-    <section class="sec">
+    <section class="sec sec-last">
       <div class="card ferramenta">
         <label class="campo">
           <span class="mono rot">nome</span>
@@ -60,13 +60,6 @@ interface Item { id: number; nome: string; cor: string; }
         <span>A peça foi escrita <strong>uma só vez</strong> e aparece {{ total() * 3 }} vezes nas telas. Mudando o desenho da peça, as três telas acompanham.</span>
       </div>
     </section>
-
-    <section class="sec sec-last">
-      <div class="card codigo">
-        <div class="arq mono">Para pedir a peça, o sistema precisa de uma linha só (nome e cor):</div>
-        <pre class="code">&lt;app-peca nome="{{ nome() || '...' }}" cor="{{ cor() }}" /&gt;</pre>
-      </div>
-    </section>
   `,
   styles: [`
     :host { display: block; position: relative; overflow: hidden; }
@@ -83,7 +76,6 @@ interface Item { id: number; nome: string; cor: string; }
     .vazio { color: var(--muted-2); font-size: 15px; margin: 8px 0; }
     .x { width: 44px; height: 44px; border-radius: 10px; border: 0; background: transparent; color: var(--muted-2); font-size: 22px; }
     .x:hover { background: var(--surface-3); color: #fff; }
-    .codigo .arq { padding: 14px 22px; border-bottom: 1px solid var(--line); font-size: 13px; color: #60a5fa; }
   `],
 })
 export class ComponenteLegoComponent {

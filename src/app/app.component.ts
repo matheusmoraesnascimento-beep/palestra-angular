@@ -17,7 +17,7 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
     <header class="topo">
       <div class="marca">
         <div class="logo">A</div>
-        <span class="titulo">Angular na prática</span>
+        <span class="titulo">Arquitetura básica do Angular</span>
       </div>
       <nav class="nav" aria-label="Seções">
         @for (a of abas; track a.id) {

@@ -9,7 +9,7 @@ import { MENSAGENS, rotuloPrioridade } from '../mensagem';
 
     <section class="sec hero">
       <div class="texto">
-        <span class="eb pill"><span class="dot"></span> Guia interativo</span>
+        <span class="eb pill"><span class="dot"></span> Adestramento</span>
         <h1 class="h1">O que é<br><span class="azul">Angular?</span></h1>
         <p class="lead">
           Uma ferramenta para construir telas de sistema montando
