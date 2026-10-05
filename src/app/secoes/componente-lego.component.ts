@@ -12,7 +12,7 @@ interface Item { id: number; nome: string; cor: string; }
     <div class="glow" style="top:-180px;left:-160px;width:700px;height:700px;background:var(--cyan)"></div>
 
     <section class="sec">
-      <span class="eb">Momento 2</span>
+      <span class="eb">Momento 1</span>
       <h1 class="h1">Componente = <span style="color:var(--cyan)">peça de Lego</span></h1>
       <p class="lead">
         A peça é criada <strong>uma vez</strong> e encaixada onde for preciso. Abaixo, uma peça é montada ao vivo:

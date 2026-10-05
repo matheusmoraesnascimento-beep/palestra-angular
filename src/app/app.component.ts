@@ -30,8 +30,8 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
     <main>
       @switch (aba()) {
         @case ('inicio') { <app-intro (ir)="ir($event)"></app-intro> }
-        @case ('anatomia') { <app-anatomia></app-anatomia> }
         @case ('componente') { <app-componente-lego></app-componente-lego> }
+        @case ('anatomia') { <app-anatomia></app-anatomia> }
         @case ('semcom') { <app-sem-com></app-sem-com> }
         @case ('spa') { <app-spa></app-spa> }
         @case ('fim') { <app-encerramento></app-encerramento> }
@@ -43,8 +43,8 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
 export class AppComponent {
   readonly abas = [
     { id: 'inicio', nome: 'Início' },
-    { id: 'anatomia', nome: 'Anatomia' },
     { id: 'componente', nome: 'Componente' },
+    { id: 'anatomia', nome: 'Anatomia' },
     { id: 'semcom', nome: 'Sem × Com Angular' },
     { id: 'spa', nome: 'Uma página só' },
     { id: 'fim', nome: 'Fim' },

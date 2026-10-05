@@ -21,7 +21,7 @@ const PROPS_OK = ['background', 'background-color', 'color', 'border-radius', 'f
   imports: [NgStyle],
   template: `
     <section class="sec">
-      <span class="eb">Momento 1</span>
+      <span class="eb">Momento 2</span>
       <h1 class="h1">Toda peça tem <span style="color:var(--blue)">3 arquivos</span></h1>
       <p class="lead">
         Cada arquivo tem <strong>uma função só</strong>. Em vez de ler sobre isso, <strong>escreva</strong> cada um:
