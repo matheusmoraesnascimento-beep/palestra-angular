@@ -14,7 +14,7 @@ type Pagina = 'caixa' | 'urgentes' | 'contador' | 'sobre';
       <h1 class="h1">Uma página <span style="color:var(--violet)">só</span></h1>
       <p class="lead">
         No site tradicional, cada clique <strong>baixa a página inteira de novo</strong>: topo, menu, tudo.
-        No Angular o topo e o menu ficam, e <strong>só o miolo troca</strong>. Em Angular a tela também é uma <strong>fotografia dos dados</strong>: o contador mantém o valor ao navegar, enquanto no site tradicional ele volta ao zero a cada recarga. Clique nas abas nos dois modos e compare.
+        No Angular o topo e o menu ficam, e <strong>só o miolo troca</strong>. Em Angular a tela também é uma <strong>fotografia dos dados</strong>: no site tradicional cada + ou − recarrega a página inteira, no Angular só os números mudam. Clique nas abas nos dois modos e compare.
       </p>
       <div class="modos">
         <button class="chip" [class.on]="modo() === 'sem'" (click)="trocarModo('sem')">Site tradicional</button>
@@ -73,7 +73,7 @@ type Pagina = 'caixa' | 'urgentes' | 'contador' | 'sobre';
                     <span class="tag">{{ n() % 2 === 0 ? 'par' : 'ímpar' }}</span>
                     <span class="tag">{{ pct() }}%</span>
                   </div>
-                  <p class="muted">Um número só. Número, barra, cor, etiquetas e o contador do topo seguem ele. Mude de aba e volte: no tradicional ele zera.</p>
+                  <p class="muted">Um número só. Número, barra, cor, etiquetas e o contador do topo seguem ele. No tradicional, cada + ou − recarrega a página inteira; no Angular só os números mudam.</p>
                 }
                 @case ('sobre') {
                   <h3>Sobre</h3>
@@ -155,7 +155,17 @@ export class SpaComponent implements OnDestroy {
   n = signal(5);
   pct = computed(() => Math.round(Math.min(Math.max(this.n(), 0), 20) / 20 * 100));
   cor = computed(() => (this.n() < 0 ? '#f87171' : this.n() < 10 ? '#fbbf24' : '#34d399'));
-  mudar(d: number) { this.n.update(v => v + d); }
+  mudar(d: number) {
+    if (this.carregando()) return;
+    this.cliques.update(v => v + 1);
+    if (this.modo() === 'sem') {
+      this.carregando.set(true);
+      this.recargas.update(v => v + 1);
+      this.timer = setTimeout(() => { this.n.update(v => v + d); this.carregando.set(false); }, 1100);
+    } else {
+      this.n.update(v => v + d);
+    }
+  }
   private timer?: ReturnType<typeof setTimeout>;
 
   ir(p: Pagina) {
@@ -164,7 +174,7 @@ export class SpaComponent implements OnDestroy {
     if (this.modo() === 'sem') {
       this.carregando.set(true);
       this.recargas.update(v => v + 1);
-      this.timer = setTimeout(() => { this.pagina.set(p); this.n.set(5); this.carregando.set(false); }, 1100);
+      this.timer = setTimeout(() => { this.pagina.set(p); this.carregando.set(false); }, 1100);
     } else {
       this.pagina.set(p);
       this.piscou.set(true);
