@@ -2,7 +2,7 @@ import { Component, OnDestroy, computed, signal } from '@angular/core';
 import { MENSAGENS, rotuloPrioridade } from '../mensagem';
 
 type Modo = 'sem' | 'com';
-type Pagina = 'caixa' | 'urgentes' | 'sobre';
+type Pagina = 'caixa' | 'urgentes' | 'contador' | 'sobre';
 
 /** Navegador de brinquedo: compara site tradicional (recarrega tudo) com SPA (troca só o miolo). */
 @Component({
@@ -10,11 +10,11 @@ type Pagina = 'caixa' | 'urgentes' | 'sobre';
   standalone: true,
   template: `
     <section class="sec">
-      <span class="eb">Momento 5</span>
+      <span class="eb">Momento 4</span>
       <h1 class="h1">Uma página <span style="color:var(--violet)">só</span></h1>
       <p class="lead">
         No site tradicional, cada clique <strong>baixa a página inteira de novo</strong>: topo, menu, tudo.
-        No Angular o topo e o menu ficam, e <strong>só o miolo troca</strong>. Vamos clicar nas abas nos dois modos e comparar.
+        No Angular o topo e o menu ficam, e <strong>só o miolo troca</strong>. Em Angular a tela também é uma <strong>fotografia dos dados</strong>: o contador mantém o valor ao navegar, enquanto no site tradicional ele volta ao zero a cada recarga. Clique nas abas nos dois modos e compare.
       </p>
       <div class="modos">
         <button class="chip" [class.on]="modo() === 'sem'" (click)="trocarModo('sem')">Site tradicional</button>
@@ -39,6 +39,7 @@ type Pagina = 'caixa' | 'urgentes' | 'sobre';
           <div class="site">
             <div class="cab-site">
               <strong class="mono" [class.pisca]="piscou()">⚓ SISTEMA</strong>
+              <span class="tag">contador: {{ n() }}</span>
               <nav>
                 @for (p of paginas; track p.id) {
                   <button class="aba" [class.on]="pagina() === p.id" (click)="ir(p.id)">{{ p.nome }}</button>
@@ -58,6 +59,21 @@ type Pagina = 'caixa' | 'urgentes' | 'sobre';
                   @for (m of urgentes; track m.assunto) {
                     <div class="msg"><span>{{ m.assunto }}</span><span class="tag">{{ rotulo(m.prioridade) }}</span></div>
                   }
+                }
+                @case ('contador') {
+                  <h3>Contador compartilhado</h3>
+                  <div class="cont">
+                    <button class="btn ghost" (click)="mudar(-1)" aria-label="Diminuir">−</button>
+                    <div class="num" [style.color]="cor()">{{ n() }}</div>
+                    <button class="btn" (click)="mudar(1)" aria-label="Aumentar">+</button>
+                  </div>
+                  <div class="barra"><div class="enche" [style.width.%]="pct()" [style.background]="cor()"></div></div>
+                  <div class="chips">
+                    <span class="tag">título: Contagem {{ n() }}</span>
+                    <span class="tag">{{ n() % 2 === 0 ? 'par' : 'ímpar' }}</span>
+                    <span class="tag">{{ pct() }}%</span>
+                  </div>
+                  <p class="muted">Um número só. Número, barra, cor, etiquetas e o contador do topo seguem ele. Mude de aba e volte: no tradicional ele zera.</p>
                 }
                 @case ('sobre') {
                   <h3>Sobre</h3>
@@ -108,6 +124,12 @@ type Pagina = 'caixa' | 'urgentes' | 'sobre';
     .miolo { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
     .miolo.troca { animation: pop .25s ease; }
     h3 { margin: 0 0 8px; font-size: 22px; }
+    .cont { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .cont .btn { width: 64px; font-size: 26px; }
+    .num { font-family: var(--mono); font-size: 72px; font-weight: 700; line-height: 1; transition: color .3s; }
+    .barra { height: 12px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+    .enche { height: 100%; border-radius: 999px; transition: width .3s, background .3s; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .msg { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--line); }
     .placar { margin-top: 20px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
     .cx { padding: 20px 24px; }
@@ -118,7 +140,7 @@ type Pagina = 'caixa' | 'urgentes' | 'sobre';
 })
 export class SpaComponent implements OnDestroy {
   readonly paginas: { id: Pagina; nome: string }[] = [
-    { id: 'caixa', nome: 'Caixa' }, { id: 'urgentes', nome: 'Urgentes' }, { id: 'sobre', nome: 'Sobre' },
+    { id: 'caixa', nome: 'Caixa' }, { id: 'urgentes', nome: 'Urgentes' }, { id: 'contador', nome: 'Contador' }, { id: 'sobre', nome: 'Sobre' },
   ];
   readonly rotulo = rotuloPrioridade;
   readonly caixa = MENSAGENS.slice(0, 4);
@@ -130,6 +152,10 @@ export class SpaComponent implements OnDestroy {
   piscou = signal(false);
   recargas = signal(0);
   cliques = signal(0);
+  n = signal(5);
+  pct = computed(() => Math.round(Math.min(Math.max(this.n(), 0), 20) / 20 * 100));
+  cor = computed(() => (this.n() < 0 ? '#f87171' : this.n() < 10 ? '#fbbf24' : '#34d399'));
+  mudar(d: number) { this.n.update(v => v + d); }
   private timer?: ReturnType<typeof setTimeout>;
 
   ir(p: Pagina) {
@@ -138,7 +164,7 @@ export class SpaComponent implements OnDestroy {
     if (this.modo() === 'sem') {
       this.carregando.set(true);
       this.recargas.update(v => v + 1);
-      this.timer = setTimeout(() => { this.pagina.set(p); this.carregando.set(false); }, 1100);
+      this.timer = setTimeout(() => { this.pagina.set(p); this.n.set(5); this.carregando.set(false); }, 1100);
     } else {
       this.pagina.set(p);
       this.piscou.set(true);
@@ -152,6 +178,7 @@ export class SpaComponent implements OnDestroy {
     this.carregando.set(false);
     this.recargas.set(0);
     this.cliques.set(0);
+    this.n.set(5);
     this.pagina.set('caixa');
   }
 

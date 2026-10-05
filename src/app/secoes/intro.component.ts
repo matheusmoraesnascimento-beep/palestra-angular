@@ -95,8 +95,7 @@ export class IntroComponent {
     { id: 'anatomia', cor: '#3b82f6', titulo: 'Anatomia de uma peça', texto: 'HTML, SCSS e TS: o que cada arquivo faz. Uma peça é montada ao vivo, camada por camada.' },
     { id: 'componente', cor: '#22d3ee', titulo: 'Componente = Lego', texto: 'Criamos peças e vemos todas as telas que usam a peça mudarem juntas.' },
     { id: 'semcom', cor: '#fb923c', titulo: 'Sem × Com Angular', texto: 'A mesma troca de botão em várias telas: arquivo por arquivo, ou editando uma peça só.' },
-    { id: 'dados', cor: '#fbbf24', titulo: 'Dados vivos', texto: 'Digitar e filtrar: a tela inteira reage na hora, sem ninguém mandar atualizar.' },
-    { id: 'spa', cor: '#a78bfa', titulo: 'Uma página só', texto: 'Navegar sem a tela piscar e sem recarregar, comparado ao site tradicional.' },
+    { id: 'spa', cor: '#a78bfa', titulo: 'Uma página só', texto: 'Navegar sem piscar nem recarregar, e um contador que mantém o valor: site tradicional × SPA.' },
     { id: 'fim', cor: '#34d399', titulo: 'Fechamento', texto: 'O que vimos, em três frases.' },
   ];
 }

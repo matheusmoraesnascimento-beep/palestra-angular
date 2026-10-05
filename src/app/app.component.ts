@@ -3,7 +3,6 @@ import { IntroComponent } from './secoes/intro.component';
 import { AnatomiaComponent } from './secoes/anatomia.component';
 import { SemComComponent } from './secoes/sem-com.component';
 import { ComponenteLegoComponent } from './secoes/componente-lego.component';
-import { DadosVivosComponent } from './secoes/dados-vivos.component';
 import { SpaComponent } from './secoes/spa.component';
 import { EncerramentoComponent } from './secoes/encerramento.component';
 
@@ -12,7 +11,7 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
   standalone: true,
   imports: [
     IntroComponent, AnatomiaComponent, ComponenteLegoComponent, SemComComponent,
-    DadosVivosComponent, SpaComponent, EncerramentoComponent,
+    SpaComponent, EncerramentoComponent,
   ],
   template: `
     <header class="topo">
@@ -34,7 +33,6 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
         @case ('anatomia') { <app-anatomia></app-anatomia> }
         @case ('componente') { <app-componente-lego></app-componente-lego> }
         @case ('semcom') { <app-sem-com></app-sem-com> }
-        @case ('dados') { <app-dados-vivos></app-dados-vivos> }
         @case ('spa') { <app-spa></app-spa> }
         @case ('fim') { <app-encerramento></app-encerramento> }
       }
@@ -48,7 +46,6 @@ export class AppComponent {
     { id: 'anatomia', nome: 'Anatomia' },
     { id: 'componente', nome: 'Componente' },
     { id: 'semcom', nome: 'Sem × Com Angular' },
-    { id: 'dados', nome: 'Dados vivos' },
     { id: 'spa', nome: 'Uma página só' },
     { id: 'fim', nome: 'Fim' },
   ];
