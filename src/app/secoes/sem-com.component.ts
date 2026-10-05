@@ -14,10 +14,7 @@ import { Component, computed, signal } from '@angular/core';
       </p>
 
       <div class="ctrl">
-        <span class="muted">Telas do sistema:</span>
-        @for (v of opcoes; track v) {
-          <button class="chip" [class.on]="n() === v" (click)="definir(v)">{{ v }}</button>
-        }
+        <span class="muted">Telas do sistema: <strong>{{ n() }}</strong></span>
         <button class="btn ghost" (click)="reiniciar()">Recomeçar</button>
       </div>
     </section>
@@ -116,11 +113,10 @@ import { Component, computed, signal } from '@angular/core';
   `],
 })
 export class SemComComponent {
-  readonly opcoes = [3, 5, 8];
   readonly velha = '#64748b';
   readonly nova = '#f59e0b';
 
-  n = signal(5);
+  readonly n = signal(8);
   feitosSem = signal(0);
   comFeito = signal(false);
 
@@ -129,7 +125,6 @@ export class SemComComponent {
   arquivosCom = computed(() =>
     Array.from({ length: this.n() }, (_, i) => ({ nome: `tela-${i + 1}.html` })));
 
-  definir(v: number) { this.n.set(v); this.reiniciar(); }
   editarProximo() { this.feitosSem.update(v => Math.min(v + 1, this.n())); }
   reiniciar() { this.feitosSem.set(0); this.comFeito.set(false); }
 }
