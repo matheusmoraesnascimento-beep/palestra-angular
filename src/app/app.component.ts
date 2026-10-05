@@ -24,7 +24,7 @@ import { EncerramentoComponent } from './secoes/encerramento.component';
           <button class="tab" [class.on]="aba() === a.id" (click)="ir(a.id)">{{ a.nome }}</button>
         }
       </nav>
-      <div class="autor"><span class="dica-tec">← → navegam</span> por <strong>1T(RM2-T) Moraes</strong></div>
+      <div class="autor">por <strong>1T(RM2-T) Moraes</strong></div>
     </header>
 
     <main>
